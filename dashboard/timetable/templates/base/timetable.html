@@ -1,0 +1,29 @@
+{% extends 'main.html' %} {% block content %}
+<h1>{{timetable}}</h1>
+<table>
+  <tr>
+    {% for h in header %}
+    <th>{{h}}</th>
+    {% endfor %}
+  </tr>
+  {% for row in timetableRows %}
+  <tr>
+    <td>{{row}}</td>
+    {% for element in row.get_all_elements %}
+    <td>
+      {% if element.body == 'None' %}
+      <a href="{% url 'update-element' element.id user.id %}"
+        >{{'-----'}}</a
+      >
+      {% else %}
+      <a href="{% url 'update-element' element.id user.id %}"
+        >{{element}}</a
+      >
+      {% endif %}
+    </td>
+    {% endfor %}
+    <td><a href="{% url 'delete-row' row.id user.id %}">Delete Row</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% include 'base/addRowModal.html' %} {% endblock content %}

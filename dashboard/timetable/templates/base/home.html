@@ -1,0 +1,16 @@
+{% extends 'main.html' %} {% block content %}
+
+<div class='home-container'>
+
+<div>
+<h1>Home</h1>
+</div>
+
+<div>
+<h2>Overview</h2>
+<h2><a href="{% url 'timetable' request.user.id %}">TimeTable</a></h2>
+</div>
+
+</div>
+
+{% endblock content %}
